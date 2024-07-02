@@ -49,5 +49,4 @@ DataProvider.propTypes = {
 }
 
 export const useData = () => useContext(DataContext);
-
 export default DataContext;

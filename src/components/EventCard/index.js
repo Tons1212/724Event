@@ -38,7 +38,7 @@ EventCard.propTypes = {
 };
 
 EventCard.defaultProps = {
-  imageAlt: "image",
+  imageAlt: "Notre dernière évènement",
   small: false,
 }
 
