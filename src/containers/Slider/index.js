@@ -11,21 +11,21 @@ const Slider = () => {
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % byDateDesc.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [byDateDesc]);
-
-  if (!byDateDesc || byDateDesc.length === 0) {
-    return null;
+  const nextCard = () => {
+    if (byDateDesc) {
+      setTimeout(
+        () => setIndex(index < byDateDesc.length -1 ? index +1 : 0),
+        5000
+      )
+    }
   }
+  useEffect(() => {
+    nextCard();
+  });
 
   return (
     <div className="SlideCardList">
-      {byDateDesc.map((event, idx) => (
+      {byDateDesc?.map((event, idx) => (
         <div
           key={event.title}
           className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}
@@ -42,7 +42,7 @@ const Slider = () => {
       ))}
       <div className="SlideCard__paginationContainer">
         <div className="SlideCard__pagination">
-          {byDateDesc.map((_, radioIdx) => (
+          {byDateDesc?.map((_, radioIdx) => (
             <input
               // eslint-disable-next-line react/no-array-index-key
               key={radioIdx}
